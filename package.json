@@ -1,0 +1,19 @@
+{
+  "name": "blockvey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "espress": "0.0.0",
+    "express": "^4.16.4",
+    "truffle": "^4.1.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

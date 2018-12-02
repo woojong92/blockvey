@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bignumber.js/bignumber.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>blockvey</h1>
+
+    </header>
+    
+    <script>
+        var userAccount;
+        var crytoVotings;
+
+        function startApp() {
+            
+            const CONTRACTADDRESS = " "; //votingFactory 컨트랙트 주소
+            const CONTRACTABI = " "; //votingFactory 컨트랙트 ABI
+            
+            SurveyFactoryContract = new web3js.eth.Contract(CONTRACTABI, CONTRACTADDRESS);
+
+            var accountInterval = setInterval(() => {
+                if (web3.eth.accouts[0] != userAccount) {
+                    userAccount = web3.eth.accounts[0];
+                }
+            }, 100);
+            
+
+        }
+
+        window.addEventListener('load', function() {
+            //Web3가 브라우저에 주입되었는가? (mist/metamask)
+            if(typeof web3 !== 'undefined'){
+                // Mist/metaMask의 프로바이더 사용
+                //web3js = new Web3(web3.currentProvider);
+                web3js = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:7545")) //ganache 사용
+            } else {
+                // 사용자가 metamask를 설치하지 않은 경우에 대해 처리
+                // 사용자들에게 metamask를 설치하라는 등의 메시지
+            }
+            // 
+            startApp()
+        })
+    
+    
+    </script>
+    -->
+
+    <a href="">투표 생성</a>
+    
+
+
+</body>
+</html>

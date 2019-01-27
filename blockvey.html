@@ -17,43 +17,116 @@
         var userAccount;
         var crytoVotings;
 
+        /*
         function startApp() {
             
-            const CONTRACTADDRESS = " "; //votingFactory 컨트랙트 주소
-            const CONTRACTABI = " "; //votingFactory 컨트랙트 ABI
+            const CONTRACTADDRESS = "0x33af885a5c288f9bcb62a4d99ffe6ad6b999e404"; //votingFactory 컨트랙트 주소
+            const CONTRACTABI = [{"constant":true,"inputs":[],"name":"getSurveys","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"participantsCnt","type":"uint16"},{"name":"questionsCnt","type":"uint16"},{"name":"finishTime","type":"uint256"}],"name":"createSurvey","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]; 
             
             SurveyFactoryContract = new web3js.eth.Contract(CONTRACTABI, CONTRACTADDRESS);
 
             var accountInterval = setInterval(() => {
                 if (web3.eth.accouts[0] != userAccount) {
                     userAccount = web3.eth.accounts[0];
+                //새 계정에 대한 UI로 업데이트를 하기위한 함수 호출 필요
                 }
             }, 100);
-            
+            //
 
-        }
+        }*/
 
+        /*
         window.addEventListener('load', function() {
             //Web3가 브라우저에 주입되었는가? (mist/metamask)
             if(typeof web3 !== 'undefined'){
                 // Mist/metaMask의 프로바이더 사용
                 //web3js = new Web3(web3.currentProvider);
-                web3js = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:7545")) //ganache 사용
+                //web3js = new Web3(new Web3.providers.WebsocketProvider(HttpRPCAddr));
+                web3js = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:7545")); //ganache 사용
             } else {
                 // 사용자가 metamask를 설치하지 않은 경우에 대해 처리
                 // 사용자들에게 metamask를 설치하라는 등의 메시지
             }
             // 
             startApp()
-        })
-    
-    
+        })*/
+
+
+        $(document).ready( async () => {
+
+        web3js = new Web3(new Web3.providers.WebsocketProvider('http://localhost:7545'));
+        //            web3js = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+
+        console.log(web3js);
+        // 현재 블록 정보
+        baseBlock = await web3js.eth.getBlockNumber();
+        //            document.getElementById("current_account").textContent = "접속 ERROR : 블록 정보를 가져올 수 없습니다.";
+        //            baseBlock = -1;
+
+        // 현재 어카운트 목록
+        accounts = await web3js.eth.getAccounts();
+        // document.getElementById("current_account").textContent = "접속 ERROR : 계정 정보를 가져올 수 없습니다.";
+
+        //gameToken = new web3js.eth.Contract(TokenABI, TokenAddr); // 토큰 컨트랙트 가져오기
+        //accounts[10] = CrowdSaleAddr; // 크라우드 세일 컨트랙트 주소
+
+        //accountOptionDraw(); // EOA 계정 콤보박스 셋팅
+        //currencyOptionDraw(); // 토큰 단위 콤보박스 셋팅
+        //accountRefresh();
+        //watchStart(); // 이벤트 로그 Start...
+
+        $.getJSON('https://ethgasstation.info/json/ethgasAPI.json', function(data) {
+            $("#gas_price").val(data['safeLow'] / 10);
+        });
+
+        //$(".tokenValue").val(0);
+
+        });
+
     </script>
     -->
 
-    <a href="">투표 생성</a>
     
+   
+    <div id="createSurvey">    
+        1:<br>
+        <input type="text" name="firstname" value=""><br>
+        2:<br>
+        <input type="text" name="lastname" value="Mouse"><br><br>
+        3:<br>
+        <input type="text" name="lastname" value="Mouse"><br><br>
+        4:<br>
+        <input type="text" name="lastname" value="Mouse"><br><br>
+        5:<br>
+        <input type="text" name="lastname" value="Mouse"><br><br>
 
+        
+        <button type="button" onClick="callTransferFrom();">전송</button>
+    </div>
 
 </body>
 </html>
+
+<!--    
+<div id="transfer_from">
+        /*
+        <select class="nameList" id="sel_transfer_from_names" onchange="transferFromRefresh();"></select>
+        의 돈을
+        <select class="nameList" id="sel_transfer_from_to_names"></select>
+        에게
+        <input type="string" class=".tokenValue" id="transfer_from_value"></input>
+        <select class="currencyUnitSelector" name="GTK" id="transfer_from_unit"></select>
+        / (가진 권한
+        <text id="approval_value"></text>
+        )
+        */
+        <form>
+            <table>
+                
+                
+            </table>
+        </form>
+
+        <button type="button" onClick="callTransferFrom();">전송</button>
+    </div><br/>
+-->
